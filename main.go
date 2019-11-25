@@ -8,6 +8,11 @@ import (
 	"github.com/dineshaws/go-project/router"
 )
 
+// init function
+func init() {
+	fmt.Println("Main package init")
+}
+
 func main() {
 	fmt.Println("GO Project setup with mongo db")
 
