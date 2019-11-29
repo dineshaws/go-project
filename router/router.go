@@ -49,38 +49,30 @@ var routes = Routes{
 		"AddAlbum",
 		"POST",
 		"/api/v1/albums",
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, "not yet")
-		},
+		controller.AddAlbum,
 	},
 	Route{
 		"UpdateAlbum",
 		"PUT",
-		"/api/v1/albums",
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, "not yet")
-		},
+		"/api/v1/albums/{id}",
+		controller.UpdateAlbum,
 	},
 	Route{
 		"GetAlbum",
 		"GET",
-		"/api/v1/albums",
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, "not yet")
-		},
+		"/api/v1/albums/{id}",
+		controller.GetAlbum,
 	},
 	Route{
 		"DeleteAlbum",
 		"DELETE",
-		"/api/v1/albums",
-		func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, "not yet")
-		},
+		"/api/v1/albums/{id}",
+		controller.DeleteAlbum,
 	},
 }
 
-// NewRouter function
-func NewRouter() *mux.Router {
+// InitRouter function
+func InitRouter() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 
 	for _, route := range routes {
