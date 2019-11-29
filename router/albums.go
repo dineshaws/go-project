@@ -2,23 +2,11 @@ package router
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/gorilla/mux"
 
 	"github.com/dineshaws/go-project/album"
-	"github.com/dineshaws/go-project/config"
 )
-
-// Route map
-type Route struct {
-	Name       string
-	Method     string
-	Pattern    string
-	HandleFunc http.HandlerFunc
-}
-
-var cnfg = config.Config{}
 
 var albumDao = album.AlbumDAO{}
 
@@ -26,7 +14,7 @@ var controller album.Controller
 
 // init function
 func init() {
-	fmt.Println("Router package init")
+	fmt.Println("Album Router init")
 	cnfg.Read()
 	albumDao.Server = cnfg.Server
 	albumDao.Database = cnfg.Database
@@ -35,10 +23,7 @@ func init() {
 
 }
 
-// Routes List of map
-type Routes []Route
-
-var routes = Routes{
+var albumRoutes = Routes{
 	Route{
 		"GetAllAlbums",
 		"GET",
@@ -74,7 +59,7 @@ var routes = Routes{
 // SetAlbumRouters function to create album routes
 func SetAlbumRouters(r *mux.Router) *mux.Router {
 
-	for _, route := range routes {
+	for _, route := range albumRoutes {
 		r.
 			Methods(route.Method).
 			Path(route.Pattern).
