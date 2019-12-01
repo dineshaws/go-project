@@ -34,8 +34,15 @@ func (dao *DAO) Add(user User) error {
 	return err
 }
 
-// FindByUsername method to check username existance
-func (dao *DAO) FindByUsername(username string) (int, error) {
+// FindUsernameCount method to check username existance
+func (dao *DAO) FindUsernameCount(username string) (int, error) {
 	count, err := db.C(COLLECTION).Find(bson.M{"username": username}).Count()
 	return count, err
+}
+
+// FindByUsername method to find use by username
+func (dao *DAO) FindByUsername(username string) (User, error) {
+	var user User
+	err := db.C(COLLECTION).Find(bson.M{"username": username}).One(&user)
+	return user, err
 }

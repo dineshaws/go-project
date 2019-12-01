@@ -34,7 +34,7 @@ var userRoutes = Routes{
 	Route{
 		"Profile",
 		"GET",
-		"/api/v1/users/{id}",
+		"/api/v1/users/profile",
 		userController.GetUser,
 	},
 }
